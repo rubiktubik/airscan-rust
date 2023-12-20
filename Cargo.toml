@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+  "airscan_cli",
+  "airscan_lib"
+]
