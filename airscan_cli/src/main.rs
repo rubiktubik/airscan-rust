@@ -19,7 +19,7 @@ struct Args {
     resolution: String,
 
     /// Format jpg or pdf
-    #[arg(short, long, default_value = "jpg")]
+    #[arg(short, long, default_value = "pdf")]
     format: String,
 }
 
@@ -27,12 +27,11 @@ struct Args {
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let opt = Args::parse();
 
-    // let multifile = if source == "Feeder" && opt.format != "pdf" {
-    //     true
-    // } else {
-    //     false
-    // };
-    let multifile = true;
+    let multifile = if &opt.source == "Feeder" && opt.format != "pdf" {
+        true
+    } else {
+        false
+    };
 
     let result = post_scanrequest(
         &opt.url,
